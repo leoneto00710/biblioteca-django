@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <title>Biblioteca</title>
+</head>
+<style>
+:root{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+    text-decoration: none;
+}
+
+a{
+    color: inherit;
+}
+
+body {
+    width: 100vw;
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgba(0,0,0,1);
+    padding: 1rem 1rem;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 40px;
+    margin: 0;
+}
+
+.icons p{
+    margin: 0;
+    cursor: pointer;
+}
+
+.icons a i{
+    font-size: 30px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s;
+}
+
+.icons a i:hover{
+    transform: scale(1.2);
+}
+
+main {
+    padding: 20px;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.card{
+    width: 100%;
+    display: flex;
+    font: 1em sans-serif;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+}
+
+.card i{
+    font-size: 30px;
+}
+
+
+.card img{
+    width: 200px;
+    max-height: 400px;
+    border-radius: 20px 0px 0px 20px;
+}
+
+.card ul{
+    list-style: none;
+}
+
+.card .txt{
+    display: flex;
+    flex-direction: column;
+}
+
+.card .genre{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    align-items: flex-start;
+}
+
+.card .genre li{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card .genre li i{
+    transition: all 0.4s;
+}
+
+.card .genre li i:hover{
+    transform: scale(1.2);
+    color: #007bff;
+}
+
+.book {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+
+@media (max-width: 900px) {
+    
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgba(0,0,0,1);
+    padding: 0.5rem 0.5rem;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 20px;
+    margin: 0;
+}
+
+.container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.card{
+    width: 100%;
+    display: flex;
+    font: 0.5em sans-serif;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+}
+
+.card i{
+    font-size: 30px;
+}
+
+
+.card img{
+    width: 100px;
+    max-height: 200px;
+    border-radius: 20px 0px 0px 20px;
+}
+
+.card ul{
+    list-style: none;
+}
+
+.card .txt{
+    display: flex;
+    flex-direction: column;
+}
+
+.card .genre{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    align-items: flex-start;
+}
+
+.card .genre li{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card .genre li i{
+    transition: all 0.4s;
+}
+
+.card .genre li i:hover{
+    transform: scale(1.2);
+    color: #007bff;
+}
+
+.book {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+}
+
+</style>
+<body>
+    <header>
+        <div class="titulo">
+            <h1>Biblioteca</h1>
+        </div>
+        <div class="icons">
+            <a href="{% url 'sair' %}"><i class="fa-solid fa-user"></i></a>
+            <p>sair</p>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            {% for livro in livros %}
+            <div class="card">
+                <img src="{{livro.image.url}}" alt="{{livro.title}}">
+                <div class="txt">
+                    <ul class="tittle">
+                        <li><h1>{{livro.title}}</h1></li>
+                        <li><h3>{{livro.author}}</h3></li>
+                    </ul>
+                    <ul class="genre">
+                        <li><h4>Instituição:</h4>
+                            <p>{{livro.publisher}}</p>
+                        </li>
+                        <li><h4>Gênero:</h4>
+                            <p>{{livro.genre}}</p>
+                        </li>
+                        <li>
+                            <h4>Download:</h4>
+                            <a href="{{livro.download.url}}" target="_blank"><i class="fa-solid fa-download"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>

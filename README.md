@@ -5,6 +5,7 @@
 <ul>
     <li>Django</li>
     <li>Python</li>
+    <li>SQLite</li>
     <li>Bootstrap</li>
     <li>HTML</li> 
     <li>CSS</li> 
